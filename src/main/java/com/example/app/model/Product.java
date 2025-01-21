@@ -1,8 +1,6 @@
 package com.example.app.model;
 
 import java.util.List;
-import java.util.Locale.Category;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,7 +30,7 @@ import lombok.NoArgsConstructor;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long code;
+    private Long id;
     private String name;
     private String description;
     private Double price;
@@ -46,14 +44,14 @@ public class Product {
     @JoinTable(
         name = "order_product", 
         joinColumns = @JoinColumn(name = "order_id"), 
-        inverseJoinColumns = @JoinColumn(name = "product_code")
+        inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private List<Order> orders;
 
     @ManyToMany
     @JoinTable(
         name = "product_category", 
-        joinColumns = @JoinColumn(name = "product_code"), 
+        joinColumns = @JoinColumn(name = "product_id"), 
         inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<Category> categories;
