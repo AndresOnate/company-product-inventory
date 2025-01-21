@@ -31,7 +31,6 @@ import lombok.NoArgsConstructor;
 public class Company {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "nit")
     private String nit;
 
