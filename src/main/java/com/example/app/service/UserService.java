@@ -2,6 +2,8 @@ package com.example.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.app.controller.user.UserDto;
 import com.example.app.model.User;
 import com.example.app.repository.UserRepository;
 import java.util.List;
@@ -31,8 +33,10 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public User createUser(User user) {
-        return userRepository.save(user);
+    public User createUser(UserDto userDto )
+    {
+        User createdUser = userRepository.save(new User(userDto));
+        return createdUser;
     }
 
     public User updateUser(Long id, User userDetails) {
@@ -49,5 +53,18 @@ public class UserService {
 
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public User findByEmail( String email ){
+        System.out.println( "Email: " + email );
+        Optional<User> optionalUser = userRepository.findByEmail( email );
+        if ( optionalUser.isPresent() )
+        {
+            return optionalUser.get();
+        }
+        else
+        {
+            return  null;
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.app.controller;
+package com.example.app.controller.user;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.app.model.User;
@@ -41,8 +42,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(User user) {
-        User newUser = userService.createUser(user);
+    public ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
+        User newUser = userService.createUser(userDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 

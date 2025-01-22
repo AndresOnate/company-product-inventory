@@ -1,6 +1,8 @@
 package com.example.app;
 
-import com.example.app.controller.UserController;
+import com.example.app.controller.user.UserController;
+import com.example.app.controller.user.UserDto;
+import com.example.app.enums.RoleEnum;
 import com.example.app.model.User;
 import com.example.app.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +20,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +41,8 @@ class UserControllerTest {
     @BeforeEach
     void setUp() {
         mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
-        user = new User(1L, "John Doe", "john.doe@example.com", "password123", "EXTERNAL");
+        List<RoleEnum> roles = new ArrayList<>();
+        user = new User(1L, "John Doe", "john.doe@example.com", "password123", roles );
     }
 
     @Test
@@ -68,7 +72,7 @@ class UserControllerTest {
 
     @Test
     void testCreateUser() throws Exception {
-        when(userService.createUser(any(User.class))).thenReturn(user);
+        when(userService.createUser(any(UserDto.class))).thenReturn(user);
         mockMvc.perform(post("/api/users")
                 .contentType("application/json")
                 .content("{ \"name\": \"John Doe\", \"email\": \"john.doe@example.com\", \"password\": \"password123\" }"))
