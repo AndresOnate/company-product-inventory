@@ -45,5 +45,12 @@ public class Company {
 
     @OneToMany(mappedBy = "company")
     private List<Product> products;
+
+    public Company(String nit, String name, String address, String phone) {
+        this.nit = nit;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+    }
     
 }

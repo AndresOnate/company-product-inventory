@@ -31,6 +31,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String code;
     private String name;
     private String description;
     private Double price;
@@ -43,8 +44,8 @@ public class Product {
     @ManyToMany
     @JoinTable(
         name = "order_product", 
-        joinColumns = @JoinColumn(name = "order_id"), 
-        inverseJoinColumns = @JoinColumn(name = "product_id")
+        joinColumns = @JoinColumn(name = "product_id"), 
+        inverseJoinColumns = @JoinColumn(name = "order_id")
     )
     private List<Order> orders;
 
@@ -55,4 +56,6 @@ public class Product {
         inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<Category> categories;
+
+    
 }
