@@ -1,5 +1,5 @@
-const BASE_URL = "http://127.0.0.1:5000/api/products/";
-const COMPANIES_URL = "http://127.0.0.1:5000/api/companies/"
+const BASE_URL = "http://ec2-18-226-96-13.us-east-2.compute.amazonaws.com:5000/api/products/";
+const COMPANIES_URL = "http://ec2-18-226-96-13.us-east-2.compute.amazonaws.com:5000/api/companies/"
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem("jwt");

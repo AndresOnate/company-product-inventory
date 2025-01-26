@@ -8,7 +8,7 @@ import axios from "axios";
  */
 export const login = async (email, password) => {
     try {
-        const response = await axios.post("http://127.0.0.1:5000/api/auth", { email, password });
+        const response = await axios.post("http://ec2-18-226-96-13.us-east-2.compute.amazonaws.com:5000/api/auth", { email, password });
         const { token } = response.data;
         localStorage.setItem("jwt", token);
         return token;
