@@ -150,6 +150,9 @@ const InventoryView = () => {
       alert('Failed to send email.');
     }
   };
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+  };
 
   return (
     <div className="inventory-view">
@@ -166,6 +169,9 @@ const InventoryView = () => {
               </Link>
             </>
           )}
+          <Link to="/login">
+            <button onClick={handleLogout}>Log out</button>
+          </Link>
         </div>
       </div>
       <div className="filters">
