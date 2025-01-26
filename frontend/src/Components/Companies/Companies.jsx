@@ -16,7 +16,6 @@ const Companies = () => {
   const [editingId, setEditingId] = useState(null);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     const token = localStorage.getItem("jwt"); 
     if (!token) {
@@ -79,6 +78,10 @@ const Companies = () => {
     setEditingId(nit);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+  };
+
   return (
     <div className="companies-view">
       <div className="header-container">
@@ -89,6 +92,9 @@ const Companies = () => {
           </Link>
           <Link to="/inventario">
             <button>Inventario</button>
+          </Link>
+          <Link to="/login">
+            <button onClick={handleLogout}>Log out</button>
           </Link>
         </div>
       </div>
@@ -108,3 +114,4 @@ const Companies = () => {
 };
 
 export default Companies;
+
