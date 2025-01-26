@@ -97,7 +97,9 @@ const Products = () => {
   const editProductHandler = (id) => {
     setEditingId(id);
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+  };
   return (
     <div className="products-view">
       <div className="header-container">
@@ -109,6 +111,9 @@ const Products = () => {
           <Link to="/inventario">
             <button>Inventario</button>
           </Link>
+          <Link to="/login">
+            <button onClick={handleLogout}>Log out</button>
+          </Link>          
         </div>
       </div>
       <div className="content-container">
